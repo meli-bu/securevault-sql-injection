@@ -1,0 +1,80 @@
+{
+  "info": {
+    "name": "SecureVault API",
+    "_postman_id": "d2b69a50-4a62-4b8b-98ac-1e7e5e60f7ab",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "adminSecret",
+      "value": "CHANGE_ME"
+    },
+    {
+      "key": "capabilityCode",
+      "value": "PASTE_CODE_HERE"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/"
+      }
+    },
+    {
+      "name": "List users",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/users"
+      }
+    },
+    {
+      "name": "Generate capability code",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-admin-secret",
+            "value": "{{adminSecret}}"
+          }
+        ],
+        "url": "{{baseUrl}}/api/security/capability"
+      }
+    },
+    {
+      "name": "Create encrypted user",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-admin-secret",
+            "value": "{{adminSecret}}"
+          },
+          {
+            "key": "x-capability-code",
+            "value": "{{capabilityCode}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Sara Example\",\n  \"email\": \"sara@example.com\",\n  \"sensitiveNote\": \"Example private information\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/users"
+      }
+    }
+  ]
+}

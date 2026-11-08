@@ -1,0 +1,14 @@
+{
+  "name": "securevault-sql-injection-protection",
+  "version": "1.0.0",
+  "description": "SQL injection protection, AES-256-GCM encryption and two-layer authorization demo",
+  "main": "src/server.js",
+  "scripts": {"start": "node src/server.js", "dev": "node --watch src/server.js"},
+  "engines": {"node": ">=20"},
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0"
+  }
+}
